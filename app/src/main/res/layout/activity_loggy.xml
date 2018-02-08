@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.udemy.wilfredo.loggy.LoggyActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="121dp"
+        android:ems="10"
+        android:hint="@string/loggy_email"
+        android:inputType="textEmailAddress" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEmail"
+        android:layout_alignStart="@+id/editTextEmail"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="@string/loggy_password"
+        android:inputType="textPassword" />
+
+    <Switch
+        android:id="@+id/switchRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editTextPassword"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_marginTop="29dp"
+        android:text="@string/loggy_remember" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/switchRemember"
+        android:layout_alignLeft="@+id/editTextPassword"
+        android:layout_alignRight="@+id/switchRemember"
+        android:layout_alignStart="@+id/editTextPassword"
+        android:layout_below="@+id/switchRemember"
+        android:layout_marginTop="29dp"
+        android:text="@string/loggy_login" />
+</RelativeLayout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Loggy</string>
+    <string name="loggy_email">Email</string>
+    <string name="loggy_password">Passsword</string>
+    <string name="loggy_remember">Remember</string>
+    <string name="loggy_login">Log In</string>
 </resources>
