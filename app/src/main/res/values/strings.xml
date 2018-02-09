@@ -4,4 +4,6 @@
     <string name="loggy_password">Passsword</string>
     <string name="loggy_remember">Remember</string>
     <string name="loggy_login">Log In</string>
+    <string name="menu_logout">Log Out</string>
+    <string name="menu_forgetlogout">Log Out and Forget</string>
 </resources>

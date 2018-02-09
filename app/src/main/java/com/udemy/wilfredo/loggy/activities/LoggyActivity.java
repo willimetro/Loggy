@@ -1,6 +1,8 @@
-package com.udemy.wilfredo.loggy;
+package com.udemy.wilfredo.loggy.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -11,7 +13,12 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.udemy.wilfredo.loggy.R;
+import com.udemy.wilfredo.loggy.utils.Util;
+
 public class LoggyActivity extends AppCompatActivity {
+
+    private SharedPreferences prefs;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -25,12 +32,15 @@ public class LoggyActivity extends AppCompatActivity {
         //Se inicializan los componentes de la UI
         initUI();
 
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        setFieldsIfExistInPreferences();
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(logIn(editTextEmail.getText().toString(), editTextPassword.getText().toString())){
-                    Intent intentLogin = new Intent(LoggyActivity.this,DasboardActivity.class);
+                    Intent intentLogin = new Intent(LoggyActivity.this,DashboardActivity.class);
                     intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    savePreferences(editTextEmail.getText().toString(),editTextPassword.getText().toString());
                     startActivity(intentLogin);
                 }
             }
@@ -55,6 +65,33 @@ public class LoggyActivity extends AppCompatActivity {
             login = true;
         }
         return login;
+    }
+
+    /**
+     *
+     */
+    private void setFieldsIfExistInPreferences() {
+        String email = Util.getValueForPreferences(prefs,"email");
+        String password = Util.getValueForPreferences(prefs,"password");
+        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+            editTextEmail.setText(email);
+            editTextPassword.setText(password);
+            switchRemember.setChecked(true);
+        }
+    }
+
+    /**
+     * Método que guarda las propiedades en el SharedPreferences
+     * @param email  propiedad que representa el email ingresado por el usuario
+     * @param password  propiedad que representa el password ingresado por el usuario
+     */
+    public void savePreferences(String email, String password){
+        if(switchRemember.isChecked()) {
+            SharedPreferences.Editor sharedEditor = prefs.edit();
+            sharedEditor.putString("email",email);
+            sharedEditor.putString("password", password);
+            sharedEditor.apply();
+        }
     }
 
     /**
